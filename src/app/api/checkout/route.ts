@@ -67,9 +67,7 @@ export async function POST(req: NextRequest) {
       );
     }
 
-    const baseUrl =
-      process.env.NEXT_PUBLIC_BASE_URL ||
-      `https://${req.headers.get("host")}`;
+    const baseUrl = `https://${req.headers.get("host")}`;
 
     const session = await getStripe().checkout.sessions.create({
       mode: "payment",

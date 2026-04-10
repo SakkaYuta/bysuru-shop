@@ -94,7 +94,7 @@ export const products: Product[] = [
       "お子さまと一緒に特別体験",
       "記念写真撮影あり",
     ],
-    capacity: "最大8名",
+    capacity: "最大8組",
     price: 62000,
     points: 62000,
     stock: 8,

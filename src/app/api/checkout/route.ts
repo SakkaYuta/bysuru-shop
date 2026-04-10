@@ -15,8 +15,15 @@ export async function POST(req: NextRequest) {
     // CSRF: same-origin チェック
     const origin = req.headers.get("origin");
     const host = req.headers.get("host");
-    if (origin && !origin.includes(host || "")) {
-      return Response.json({ error: "Forbidden" }, { status: 403 });
+    if (origin && host) {
+      try {
+        const originHost = new URL(origin).host;
+        if (originHost !== host) {
+          return Response.json({ error: "Forbidden" }, { status: 403 });
+        }
+      } catch {
+        return Response.json({ error: "Forbidden" }, { status: 403 });
+      }
     }
 
     const { userId } = await auth();

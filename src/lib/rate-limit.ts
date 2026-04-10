@@ -7,7 +7,7 @@ export function rateLimit(key: string): { success: boolean } {
   const now = Date.now();
   const entry = requests.get(key);
 
-  if (!entry || now > entry.resetAt) {
+  if (!entry || now >= entry.resetAt) {
     requests.set(key, { count: 1, resetAt: now + WINDOW_MS });
     return { success: true };
   }

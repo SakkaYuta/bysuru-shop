@@ -21,7 +21,6 @@ export default async function HistoryPage() {
     limit: 50,
     status: "complete",
     customer_details: { email },
-    expand: ["data.line_items"],
   });
 
   const orders = sessions.data.filter(

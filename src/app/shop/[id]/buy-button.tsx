@@ -58,6 +58,10 @@ export function BuyButton({
       });
       const data = await res.json();
       if (data.url) {
+        const url = new URL(data.url);
+        if (!url.hostname.endsWith("stripe.com")) {
+          throw new Error("Invalid redirect URL");
+        }
         window.location.href = data.url;
       } else {
         alert(data.error || "エラーが発生しました。");
